@@ -1,0 +1,131 @@
+#
+# @file  libAMDxSIM.inf
+# @brief SIL xSIM UEFI module
+#
+# Copyright 2021 Advanced Micro Devices, Inc. All rights reserved.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = libAMDxSIM
+  FILE_GUID                      = ae767609-260d-411d-8842-015421ad1bcd
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = libAMDxSIM|PEIM PEI_CORE SEC
+
+[Sources]
+  OpenSIL/xSIM/xSimGbls.c
+  OpenSIL/xSIM/xSIM.c
+  OpenSIL/xSIM/xSIM.h
+  OpenSIL/xSIM/xSIM-api.h
+  OpenSIL/xSIM/IpBlkList.c
+  OpenSIL/xSIM/IpHandler.h
+  OpenSIL/xSIM/SocUtil.c
+  OpenSIL/xSIM/SocUtil.h
+  OpenSIL/xSIM/DF/DF.c
+  OpenSIL/xSIM/DF/DF.h
+  OpenSIL/xSIM/DF/DFClassDflts.c
+  OpenSIL/xSIM/DFClass-api.h
+  OpenSIL/xSIM/DF/SilFabricRegistersDf3.h
+  OpenSIL/xSIM/DF/SilFabricInfoSsp.h
+  OpenSIL/xSIM/DF/FabricDfClkGatingInit/FabricDfClkGatingInit.h
+  OpenSIL/xSIM/DF/FabricDfClkGatingInit/FabricDfClkGatingInit.c
+  OpenSIL/xSIM/DF/FabricCsInit/FabricCsInit.h
+  OpenSIL/xSIM/DF/FabricCsInit/FabricCsInit.c
+  OpenSIL/xSIM/DF/FabricCcmInit/FabricCcmInit.h
+  OpenSIL/xSIM/DF/FabricCcmInit/FabricCcmInit.c
+  OpenSIL/xSIM/DF/FabricPieRasInit/FabricPieRasInit.h
+  OpenSIL/xSIM/DF/FabricPieRasInit/FabricPieRasInit.c
+  OpenSIL/xSIM/DF/FabricDfMiscInit/FabricDfMiscInit.h
+  OpenSIL/xSIM/DF/FabricDfMiscInit/FabricDfMiscInit.c
+  OpenSIL/xSIM/DF/FabricScrubInit/FabricScrubInit.h
+  OpenSIL/xSIM/DF/FabricScrubInit/FabricScrubInit.c
+  OpenSIL/xSIM/DF/FabricRegisterAccLib.c
+  OpenSIL/xSIM/DF/SilFabricRegisterAccLib.h
+  OpenSIL/xSIM/DF/BaseFabricTopologyLib.c
+  OpenSIL/xSIM/DF/SilBaseFabricTopologyLib.h
+  OpenSIL/xSIM/CCX/CCX.c
+  OpenSIL/xSIM/CCX/CCX.h
+  OpenSIL/xSIM/FCHClass-api.h
+  OpenSIL/xSIM/FCH/FchClass.h
+  OpenSIL/xSIM/FCH/FchClass.c
+  OpenSIL/xSIM/FCH/FchClassDflts.c
+  OpenSIL/xSIM/FCH/Fch.c
+  OpenSIL/xSIM/FCH/Fch.h
+  OpenSIL/xSIM/FCH/FchHelper.c
+  OpenSIL/xSIM/FCH/FchHelper.h
+  OpenSIL/xSIM/FCH/LegacyInterrupt.c
+  OpenSIL/xSIM/FCH/LegacyInterrupt.h
+  OpenSIL/xSIM/FCH/FchInitProtocol.h
+  OpenSIL/xSIM/FCH/FchCore/FchAb/FchAb.c
+  OpenSIL/xSIM/FCH/FchCore/FchAb/FchAlinkLib.c
+  OpenSIL/xSIM/FCH/FchCore/FchAb/FchAb.h
+  OpenSIL/xSIM/FCH/FchCore/FchAb/FchAbReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchHwAcpi/FchHwAcpi.c
+  OpenSIL/xSIM/FCH/FchCore/FchHwAcpi/FchHwAcpi.h
+  OpenSIL/xSIM/FCH/FchCore/FchHwAcpi/FchHwAcpiReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchLpc/FchLpc.c
+  OpenSIL/xSIM/FCH/FchCore/FchLpc/FchLpc.h
+  OpenSIL/xSIM/FCH/FchCore/FchLpc/FchLpcReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchSpi/FchSpi.c
+  OpenSIL/xSIM/FCH/FchCore/FchSpi/FchSpi.h
+  OpenSIL/xSIM/FCH/FchCore/FchSpi/FchSpiDef.h
+  OpenSIL/xSIM/FCH/FchCore/FchSpi/FchSpiReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchEspi/FchEspi.c
+  OpenSIL/xSIM/FCH/FchCore/FchEspi/FchEspi.h
+  OpenSIL/xSIM/FCH/FchCore/FchEspi/FchEspiReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchSata/FchSata.c
+  OpenSIL/xSIM/FCH/FchCore/FchSata/FchSata.h
+  OpenSIL/xSIM/FCH/FchCore/FchSata/FchSataDef.h
+  OpenSIL/xSIM/FCH/FchCore/FchSata/FchSataReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchEmmc/FchEmmc.c
+  OpenSIL/xSIM/FCH/FchCore/FchEmmc/FchEmmc.h
+  OpenSIL/xSIM/FCH/FchCore/FchGpp/FchGpp.c
+  OpenSIL/xSIM/FCH/FchCore/FchGpp/FchGppDef.h
+  OpenSIL/xSIM/FCH/FchCore/FchXgbe/FchXgbe.c
+  OpenSIL/xSIM/FCH/FchCore/FchXgbe/FchXgbeDef.h
+  OpenSIL/xSIM/FCH/FchCore/FchXhci/FchXhci.c
+  OpenSIL/xSIM/FCH/FchCore/FchXhci/FchXhci.h
+  OpenSIL/xSIM/FCH/FchCore/FchXhci/FchXhciReg.h
+  OpenSIL/xSIM/FCH/FchParams.c
+  OpenSIL/xSIM/FCH/FchParams.h
+  OpenSIL/xSIM/FCH/MultiFchInit.c
+  OpenSIL/xSIM/FCH/MultiFchInit.h
+  OpenSIL/xSIM/FCH/FchReg.h
+  OpenSIL/xSIM/FCH/FchCore/FchResetDef.c
+  OpenSIL/xSIM/FCH/FchCore/FchEnvDef.c
+  OpenSIL/xSIM/FCH/Common/FchCommon.h
+  OpenSIL/xSIM/FCH/Common/FchCommonCfg.h
+  OpenSIL/xSIM/FCH/Common/FchCommon.c
+  OpenSIL/xSIM/FCH/Common/FchImc.h
+  OpenSIL/xSIM/FCH/Common/FchPT.h
+#  OpenSIL/xSIM/HSP/HSP.c
+#  OpenSIL/xSIM/HSP/HSP.h
+#  OpenSIL/xSIM/IOMMU/IOMMU.c
+#  OpenSIL/xSIM/IOMMU/IOMMU.h
+#  OpenSIL/xSIM/MemoryReport/MemoryReport.c
+#  OpenSIL/xSIM/MemoryReport/MemoryReport.h
+#  OpenSIL/xSIM/MPM/MPM.c
+#  OpenSIL/xSIM/MPM/MPM.h
+#  OpenSIL/xSIM/Multimedia/Multimedia.c
+#  OpenSIL/xSIM/Multimedia/Multimedia.h
+  OpenSIL/xSIM/NBIO/NBIO.c
+  OpenSIL/xSIM/NBIO/NBIO.h
+#  OpenSIL/xSIM/PCIe/PCIe.c
+#  OpenSIL/xSIM/PCIe/PCIe.h
+#  OpenSIL/xSIM/RAS/RAS.c
+#  OpenSIL/xSIM/RAS/RAS.h
+  OpenSIL/xSIM/SMU/SmuV11.c
+  OpenSIL/xSIM/SMU/SmuV11.h
+#  OpenSIL/xSIM/USB/USB.c
+#  OpenSIL/xSIM/USB/USB.h
+#  OpenSIL/xSIM/Power/Power.c
+#  OpenSIL/xSIM/Power/Power.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdSiliconSupportPkg/Host-UEFI/AmdSiliconSupportPkg.dec
+
+[LibraryClasses]
+  SilEfiLib
+  libAMDxUSL

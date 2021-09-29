@@ -1,0 +1,52 @@
+# Copyright (C) 2021 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#
+# @file  SilPei.inf
+# @brief PEI module made for openSIL SI calls
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SilPei
+  FILE_GUID                      = 0244F336-974A-433E-9B93-0AF3C2BCE527
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SilPeiInit
+
+[Sources]
+  SilPei.c
+  xPrfServicesPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PcdLib
+  PeiServicesLib
+  libAMDxUSL
+  libAMDxSIM
+  MemRestoreLib
+  AmdPspBaseLibV2
+  AmdPspMboxLibV2
+
+[Guids]
+  gPeiOpenSilDataHobGuid
+
+[Pcd]
+
+[Ppis]
+  gAmdSilPeiInitCompletePpiGuid
+  gEfiPeiReset2PpiGuid
+
+[Protocols]
+
+[Depex]
+  gEfiPeiReset2PpiGuid
+

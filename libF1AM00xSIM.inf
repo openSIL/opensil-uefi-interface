@@ -1,0 +1,46 @@
+# Copyright (C) 2023 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#
+# @file  libA1M00xSIM.inf
+# @brief SIL xSIM Breithorn UEFI module
+#
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = libAMDxSIM
+  FILE_GUID                      = D7363CA9-6E50-425F-BEFA-DF8D9D8615D8
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = libAMDxSIM
+  SIL_PLATFORM_NAME              = Purico
+
+[BuildOptions]
+# Set the compiler to include the platform openSIL config file
+   MSFT:*_*_*_CC_FLAGS     =  /FIopenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+   GCC:*_*_*_CC_FLAGS      =  -includeopenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+
+[Sources]
+  openSIL/Include/xSIM-api.h
+  openSIL/xSIM/xSIM.c
+  openSIL/xSIM/xSIM.h
+  openSIL/xSIM/SoC/F1AM00/IpBlkListF1AM00Tp1.c
+  openSIL/xSIM/SoC/F1AM00/IpBlkListF1AM00Tp2.c
+  openSIL/xSIM/SoC/F1AM00/IpBlkListF1AM00Tp3.c
+  openSIL/xSIM/IpHandler.h
+  openSIL/xSIM/SocUtil.c
+  openSIL/xSIM/SocUtil.h
+
+
+[Sources.IA32]
+
+
+[Sources.X64]
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses]
+  SilEfiLib
+  libAMDxUSL

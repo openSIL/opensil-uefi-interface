@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2023 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SilTurinSmm
+  FILE_GUID                      = 3FC08898-6222-4A32-9A73-B740D44BB34C
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.1
+  ENTRY_POINT                    = SilSmmEntryPoint
+
+[sources]
+  SilDataInitSmm.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses]
+  SmmServicesTableLib
+  UefiDriverEntryPoint
+  DebugLib
+  SilSmmInit
+
+[Pcd]
+
+[Guids]
+
+[Protocols]
+  gOpenSilxPrfSmmProtocolGuid                #PRODUCED
+
+[Depex]
+  TRUE
+
+[FixedPcd]
+
+
+

@@ -1,0 +1,436 @@
+# Copyright (C) 2021 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#
+# @file  libAMDxUSL.inf
+# @brief SIL xUSL UEFI module
+#
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = libAMDxUSL
+  FILE_GUID                      = d952931c-464f-4acb-a3c6-562a6c9bfc38
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = libAMDxUSL
+  SIL_PLATFORM_NAME              = Purico
+
+[BuildOptions]
+# Set the compiler to include the platform openSIL config file
+   MSFT:*_*_*_CC_FLAGS     =  /FIopenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+   GCC:*_*_*_CC_FLAGS      =  -includeopenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+
+[Sources]
+  openSIL/xUSL/BaseSocLogicalIdXlat.h
+  openSIL/xUSL/BaseSocLogicalIdXlat.c
+  openSIL/xUSL/SocLogicalId.c
+  openSIL/xUSL/CoreTopologyService.c
+  openSIL/xUSL/CoreTopologyService.h
+  openSIL/xUSL/AmdFeatures.c
+  openSIL/xUSL/SilGbls.c
+  openSIL/xUSL/CommonLib/CpuLib.h
+  openSIL/xUSL/CommonLib/CpuOps.c
+  openSIL/xUSL/CommonLib/Io.h
+  openSIL/xUSL/CommonLib/IPC.c
+  openSIL/xUSL/CommonLib/Mmio.h
+  openSIL/xUSL/CommonLib/MmioOps.c
+  openSIL/xUSL/CommonLib/PciExpressPciCfg.h
+  openSIL/xUSL/CommonLib/PciOps.c
+  openSIL/xUSL/CommonLib/Pstates.c
+  openSIL/xUSL/CommonLib/SilServices.c
+  openSIL/xUSL/CommonLib/SmnAccess.c
+  openSIL/xUSL/CommonLib/SmnAccess.h
+  openSIL/xUSL/CommonLib/Utils.c
+  openSIL/xUSL/CommonLib/xUslCcxRoles.c
+  openSIL/xUSL/Include/AmdFeatures.h
+  openSIL/xUSL/Include/IPC.h
+  openSIL/xUSL/Include/MsrReg.h
+  openSIL/xUSL/Include/Pci.h
+  openSIL/xUSL/Include/PciExpress.h
+  openSIL/xUSL/Include/Porting.h
+  openSIL/xUSL/Include/Pstates.h
+  openSIL/xUSL/Include/SilCommon.h
+  openSIL/xUSL/Include/SilPcie.h
+  openSIL/xUSL/Include/SilSocLogicalId.h
+  openSIL/xUSL/Include/Utils.h
+  openSIL/xUSL/Include/xUslCcxRoles.h
+
+  openSIL/xUSL/DF/Df.h
+  openSIL/xUSL/DF/DfClassDflts.c
+  openSIL/xUSL/DF/DfClass-api.h
+  openSIL/xUSL/DF/DfIp2Ip.h
+  openSIL/xUSL/DF/Common/DfCmn2Rev.h
+  openSIL/xUSL/DF/Common/SilBaseFabricTopologyLib.h
+  openSIL/xUSL/DF/Common/BaseFabricTopologyCmn.h
+  openSIL/xUSL/DF/Common/BaseFabricTopologyCmn.c
+  openSIL/xUSL/DF/Common/FabricRegisterAccCmn.h
+  openSIL/xUSL/DF/Common/FabricRegisterAccCmn.c
+  openSIL/xUSL/DF/DfX/DfX.h
+  openSIL/xUSL/DF/DfX/DfX.c
+  openSIL/xUSL/DF/DfX/SilFabricRegistersDfX.h
+  openSIL/xUSL/DF/DfX/DfXPieRasInit.c
+  openSIL/xUSL/DF/DfX/DfXAcpiDomainInfo.h
+  openSIL/xUSL/DF/DfX/DfXAcpiDomainInfo.c
+  openSIL/xUSL/DF/DfX/DfXClkGatingInit.c
+  openSIL/xUSL/DF/DfX/DfXFabricWdt.c
+  openSIL/xUSL/DF/DfX/DfXFabricWdt.h
+  openSIL/xUSL/DF/DfX/DfXFabricRegisterAcc.h
+  openSIL/xUSL/DF/DfX/DfXFabricRegisterAcc.c
+  openSIL/xUSL/DF/DfX/DfXBaseFabricTopology.h
+  openSIL/xUSL/DF/DfX/DfXBaseFabricTopology.c
+  openSIL/xUSL/DF/DfX/BRH/BrhAbstractRegAcc.c
+  openSIL/xUSL/DF/DfX/BRH/BrhAbstractRegAcc.h
+  openSIL/xUSL/DF/DfX/BRH/DfBrh.c
+  openSIL/xUSL/DF/DfX/BRH/DfBrh.h
+  openSIL/xUSL/DF/DfX/BRH/DfInitBrh.c
+  openSIL/xUSL/DF/DfX/BRH/DfInitBrh.h
+  openSIL/xUSL/DF/DfX/BRH/BrhBaseFabricTopology.c
+  openSIL/xUSL/DF/DfX/BRH/SilFabricInfoBrh.h
+  openSIL/xUSL/DF/DfX/BRH/SilFabricRegistersBrh.h
+  openSIL/xUSL/DF/DfX/BRH/DfCmn2Brh.c
+  openSIL/xUSL/DF/DfX/BRH/DfIp2IpBrh.c
+
+  openSIL/xUSL/RcMgr/RcMgrIp2Ip.h
+  openSIL/xUSL/RcMgr/Common/FabricRcInit.c
+  openSIL/xUSL/RcMgr/Common/FabricResourceManager.h
+  openSIL/xUSL/RcMgr/Common/RcMgrCmn2Rev.h
+  openSIL/xUSL/RcMgr/DfX/FabricRcInitBasedOnNv4.c
+  openSIL/xUSL/RcMgr/DfX/FabricRcManager.c
+  openSIL/xUSL/RcMgr/DfX/FabricRcManagerDfX.h
+  openSIL/xUSL/RcMgr/DfX/RcManager4-api.h
+  openSIL/xUSL/RcMgr/DfX/BRH/FabricRcInitBrh.c
+  openSIL/xUSL/RcMgr/DfX/BRH/FabricRcInitBrh.h
+  openSIL/xUSL/RcMgr/DfX/BRH/RcMgrCmn2Brh.c
+  openSIL/xUSL/RcMgr/DfX/BRH/RcMgrBrh.c
+  openSIL/xUSL/RcMgr/DfX/BRH/RcMgrBrh.h
+  openSIL/xUSL/RcMgr/DfX/BRH/RcMgrIp2IpBrh.c
+
+
+# NBIO files
+
+  openSIL/xUSL/Nbio/NbioClass-api.h
+  openSIL/xUSL/Nbio/NbioIp2Ip.h
+
+  openSIL/xUSL/Nbio/Common/Nbio.c
+  openSIL/xUSL/Nbio/Common/Nbio.h
+  openSIL/xUSL/Nbio/Common/NbioData.c
+  openSIL/xUSL/Nbio/Common/NbioCmn2Rev.h
+  openSIL/xUSL/Nbio/Common/NbioPcieTopologyHelper.c
+  openSIL/xUSL/Nbio/Common/NbioPcieTopologyHelper.h
+  openSIL/xUSL/Nbio/Common/PciStructs.h
+  openSIL/xUSL/Nbio/Common/NbioHidePcieCore.c
+  openSIL/xUSL/Nbio/Common/PcieComplexDefaults.c
+  openSIL/xUSL/Nbio/Common/Gnb.h
+  openSIL/xUSL/Nbio/Common/GnbDxio.h
+
+  openSIL/xUSL/Nbio/Brh/include/IoagrReg.h
+  openSIL/xUSL/Nbio/Brh/include/IoapicReg.h
+  openSIL/xUSL/Nbio/Brh/include/IohcReg.h
+  openSIL/xUSL/Nbio/Brh/include/Iommul1Reg.h
+  openSIL/xUSL/Nbio/Brh/include/Iommul2Reg.h
+  openSIL/xUSL/Nbio/Brh/include/NbifEpFnCfgReg.h
+  openSIL/xUSL/Nbio/Brh/include/NbifEpF0CfgReg.h
+  openSIL/xUSL/Nbio/Brh/include/NbifMmReg.h
+  openSIL/xUSL/Nbio/Brh/include/NbioBaseReg.h
+  openSIL/xUSL/Nbio/Brh/include/PcieRcCfgReg.h
+  openSIL/xUSL/Nbio/Brh/include/PcieportReg.h
+  openSIL/xUSL/Nbio/Brh/include/PcieCoreReg.h
+  openSIL/xUSL/Nbio/Brh/include/GlobalRegB0.h
+  openSIL/xUSL/Nbio/Brh/include/SdpmuxReg.h
+  openSIL/xUSL/Nbio/Brh/include/SstReg.h
+  openSIL/xUSL/Nbio/Brh/include/SyshubmmReg.h
+  openSIL/xUSL/Nbio/Brh/include/IommuMmioReg.h
+  openSIL/xUSL/Nbio/Brh/GnbRegistersBrh.h
+  openSIL/xUSL/Nbio/Brh/NbioBrh.c
+  openSIL/xUSL/Nbio/Brh/NbioBrh.h
+  openSIL/xUSL/Nbio/Brh/NbioCmn2RevBrh.h
+  openSIL/xUSL/Nbio/Brh/NbioBaseInitBrh.c
+  openSIL/xUSL/Nbio/Brh/NbioIoApic.c
+  openSIL/xUSL/Nbio/Brh/NbioIommu.c
+  openSIL/xUSL/Nbio/Brh/NbioNbifBrhTbl.h
+  openSIL/xUSL/Nbio/Brh/NbioDefaults.h
+  openSIL/xUSL/Nbio/Brh/NbioPcieComplexDataBrh.c
+  openSIL/xUSL/Nbio/Brh/NbioPcieComplexDataBrh.h
+  openSIL/xUSL/Nbio/Brh/NbioSmnTable.c
+  openSIL/xUSL/Nbio/Brh/NbioSmnTable.h
+  openSIL/xUSL/Nbio/Brh/NbioNbifInit.c
+  openSIL/xUSL/Nbio/Brh/PkgTypeFixups.c
+
+# CCX Files
+  openSIL/xUSL/CCX/CcxClass-api.h
+  openSIL/xUSL/CCX/CcxZen5-api.h
+  openSIL/xUSL/CCX/Common/AmdTable.c
+  openSIL/xUSL/CCX/Common/AmdTable.h
+  openSIL/xUSL/CCX/Common/Ccx.c
+  openSIL/xUSL/CCX/Common/Ccx.h
+  openSIL/xUSL/CCX/Common/CcxApLaunch.c
+  openSIL/xUSL/CCX/Common/CcxApic.h
+  openSIL/xUSL/CCX/Common/CcxBrandString.c
+  openSIL/xUSL/CCX/Common/CcxBrandString.h
+  openSIL/xUSL/CCX/Common/CcxCacheInit.c
+  openSIL/xUSL/CCX/Common/CcxCacheInit.h
+  openSIL/xUSL/CCX/Common/CcxMicrocodePatch.c
+  openSIL/xUSL/CCX/Common/CcxMicrocodePatch.h
+  openSIL/xUSL/CCX/Common/CcxMiscInit.c
+  openSIL/xUSL/CCX/Common/CcxReg.h
+  openSIL/xUSL/CCX/Common/CcxSetMca.c
+  openSIL/xUSL/CCX/Common/SocServices.h
+  openSIL/xUSL/CCX/Common/SocServices.c
+  openSIL/xUSL/CCX/Zen5/CcxResetTablesZen5.c
+  openSIL/xUSL/CCX/Zen5/CcxZen5.c
+  openSIL/xUSL/CCX/Zen5/CcxZen5.h
+  openSIL/xUSL/CCX/Zen5/Zen5Reg.h
+  openSIL/xUSL/CCX/Zen5/BRH/CcxCmn2Brh.c
+  openSIL/xUSL/CCX/Zen5/BRH/CcxCmn2Brh.h
+  openSIL/xUSL/CCX/Zen5/BRH/CcxBrh.c
+  openSIL/xUSL/CCX/Zen5/BRH/CcxBrh.h
+  openSIL/xUSL/CCX/Zen5/BRH/CcxInitBrh.c
+  openSIL/xUSL/CCX/Zen5/BRH/CcxIp2IpBrh.h
+  openSIL/xUSL/CCX/Zen5/BRH/CcxIp2IpBrh.c
+
+  # Fch Files
+  openSIL/xUSL/FCH/FchIp2Ip.h
+  openSIL/xUSL/FCH/FchClass-api.h
+  openSIL/xUSL/FCH/FchUsb-api.h
+  openSIL/xUSL/FCH/FchUsbIp2Ip.h
+  openSIL/xUSL/FCH/FchSata-api.h
+  openSIL/xUSL/FCH/FchMultiFch-api.h
+  openSIL/xUSL/FCH/Common/Include/FchABRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchAL2AHBCFGRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchAOACRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchASFRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchGPIORegs.h
+  openSIL/xUSL/FCH/Common/Include/FchIOMUXRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchIORegs.h
+  openSIL/xUSL/FCH/Common/Include/FchITFESPIRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchLPCHOSTSPIREGRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchLPCPCICFGRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchMISCRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchPMRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchRMTGPIORegs.h
+  openSIL/xUSL/FCH/Common/Include/FchRSMUREGRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchSDPRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchSMBUSPCIRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchSMIRegs.h
+  openSIL/xUSL/FCH/Common/Include/SYSHUBSATAAHCIRegs.h
+  openSIL/xUSL/FCH/Common/Include/SYSHUBSATAFchRSMURegs.h
+  openSIL/xUSL/FCH/Common/Include/SYSHUBSATAPORTRegs.h
+  openSIL/xUSL/FCH/Common/Include/SYSHUBSATASLORRegs.h
+  openSIL/xUSL/FCH/Common/Include/USB31USBCONTAINERREGCNTR0Regs.h
+  openSIL/xUSL/FCH/Common/Include/DWCUSB31SSPPHYPHYX1NSRegs.h
+  openSIL/xUSL/FCH/Common/Include/FchUSBDWCUSB31CNTR0Regs.h
+  openSIL/xUSL/FCH/Common/Include/DFRegs.h
+  openSIL/xUSL/FCH/Common/Fch.c
+  openSIL/xUSL/FCH/Common/Fch.h
+  openSIL/xUSL/FCH/Common/FchReg.h
+  openSIL/xUSL/FCH/Common/FchCommon.c
+  openSIL/xUSL/FCH/Common/FchCommon.h
+  openSIL/xUSL/FCH/Common/FchCmn2Rev.h
+  openSIL/xUSL/FCH/Common/FchCore/FchAb/FchAb.c
+  openSIL/xUSL/FCH/Common/FchCore/FchAb/FchAb.h
+  openSIL/xUSL/FCH/Common/FchCore/FchAb/FchAbDefaults.c
+  openSIL/xUSL/FCH/Common/FchCore/FchAb/FchAlinkLib.c
+  openSIL/xUSL/FCH/Common/FchCore/FchAb/FchAbReg.h
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchHwAcpi.c
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchHwAcpi.h
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchHwAcpiReg.h
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchHwAcpiDefaults.c
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchAoacLib.h
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/FchAoacLib.c
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/IP/Fch80.h
+  openSIL/xUSL/FCH/Common/FchCore/FchHwAcpi/IP/Fch80.c
+  openSIL/xUSL/FCH/Common/FchCore/FchIsa/FchIsa.c
+  openSIL/xUSL/FCH/Common/FchCore/FchIsa/FchIsa.h
+  openSIL/xUSL/FCH/Common/FchCore/FchIsa/FchIsaCmn2Rev.h
+  openSIL/xUSL/FCH/Common/FchCore/FchIsa/FchSpi.c
+  openSIL/xUSL/FCH/Common/FchCore/FchIsa/FchSpi.h
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSata.c
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSata.h
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSataBlk.c
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSataBlk.h
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSataCmn2Rev.h
+  openSIL/xUSL/FCH/Common/FchCore/FchSata/FchSataReg.h
+  openSIL/xUSL/FCH/Common/FchCore/FchXhci/FchUsbCmn2Rev.h
+  openSIL/xUSL/FCH/Common/FchCore/FchXhci/FchXhci.c
+  openSIL/xUSL/FCH/Common/FchCore/FchXhci/FchXhci.h
+  openSIL/xUSL/FCH/Common/FchCore/FchXhci/FchXhciReg.h
+  openSIL/xUSL/FCH/Common/FchCore/FchEnvDef.c
+  openSIL/xUSL/FCH/Common/MultiFch/MultiFchCmn2Rev.h
+  openSIL/xUSL/FCH/Common/MultiFch/MultiFch.c
+  openSIL/xUSL/FCH/Common/MultiFch/MultiFch.h
+
+  openSIL/xUSL/FCH/Kunlun/FchKl.c
+  openSIL/xUSL/FCH/Kunlun/FchKl.h
+  openSIL/xUSL/FCH/Kunlun/FchInitKl.c
+  openSIL/xUSL/FCH/Kunlun/FchIp2IpKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCmn2RevKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCmn2RevKl.h
+
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchAb/FchAbKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchAb/FchAbKl.h
+
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciCmn2Kl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciCmn2Kl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciInitKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciIp2IpKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciIp2IpKl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciKl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchXhci/FchXhciKlReg.h
+
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchHwAcpi/FchHwAcpiCmn2Kl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchHwAcpi/FchHwAcpiCmn2Kl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchHwAcpi/FchHwAcpiKl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchHwAcpi/FchHwAcpiKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchHwAcpi/FchHwAcpiInitKl.c
+
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchIsa/FchIsaKl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchIsa/FchIsaKl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchIsa/FchIsaCmn2Kl.h
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchIsa/FchIsaCmn2Kl.c
+  openSIL/xUSL/FCH/Kunlun/FchCore/FchIsa/FchIsaInitKl.c
+
+  openSIL/xUSL/FCH/Kunlun/MultiFch/MultiFchKl.c
+  openSIL/xUSL/FCH/Kunlun/MultiFch/MultiFchKl.h
+  openSIL/xUSL/FCH/Kunlun/MultiFch/MultiFchCmn2Kl.c
+  openSIL/xUSL/FCH/Kunlun/MultiFch/MultiFchCmn2Kl.h
+  openSIL/xUSL/FCH/Kunlun/MultiFch/MultiFchInitKl.c
+
+  # SMU Files
+  openSIL/xUSL/SMU/SmuDefs.h
+  openSIL/xUSL/SMU/SmuIp2Ip.h
+  openSIL/xUSL/SMU/Common/SmuCommon.h
+  openSIL/xUSL/SMU/Common/SmuCommon.c
+  openSIL/xUSL/SMU/Common/SmuCmn2Rev.h
+  openSIL/xUSL/SMU/Brh/SmuInitBrh.c
+  openSIL/xUSL/SMU/Brh/SmuInitBrh.h
+  openSIL/xUSL/SMU/Brh/SmuBrh.c
+  openSIL/xUSL/SMU/Brh/SmuBrh.h
+  openSIL/xUSL/SMU/Brh/SmuIp2IpBrh.h
+  openSIL/xUSL/SMU/Brh/SmuIp2IpBrh.c
+  openSIL/xUSL/SMU/Brh/SmuBrhReg.h
+  openSIL/xUSL/SMU/Brh/SmuCmn2Brh.c
+  openSIL/xUSL/SMU/Brh/SmuCmn2Brh.h
+
+  #RAS Files
+  openSIL/xUSL/RAS/Common/Ras.c
+  openSIL/xUSL/RAS/Common/Ras.h
+  openSIL/xUSL/RAS/Common/RasClass-api.h
+  openSIL/xUSL/RAS/Common/RasCmn2Rev.h
+  openSIL/xUSL/RAS/Common/RasReg-api.h
+  openSIL/xUSL/RAS/Brh/RasCmn2Brh.c
+  openSIL/xUSL/RAS/Brh/RasCmn2Brh.h
+  openSIL/xUSL/RAS/Brh/RasInitBrh.c
+  openSIL/xUSL/RAS/Brh/RasInitBrh.h
+  openSIL/xUSL/RAS/Brh/RasBrh.c
+  openSIL/xUSL/RAS/Brh/RasBrh.h
+  openSIL/xUSL/RAS/Brh/SocLibBrh.c
+  openSIL/xUSL/RAS/RasDefs.h
+  openSIL/xUSL/RAS/RasIp2Ip.h
+
+  openSIL/xUSL/Mpio/Common/MpioAncDataV1.c
+  openSIL/xUSL/Mpio/Common/MpioCfgPoints.c
+  openSIL/xUSL/Mpio/Common/MpioClassDflts.c
+  openSIL/xUSL/Mpio/Common/MpioCmn2Rev.h
+  openSIL/xUSL/Mpio/Common/MpioDebugOut.c
+  openSIL/xUSL/Mpio/Common/MpioEarlyTrain.c
+  openSIL/xUSL/Mpio/Common/MpioInit.c
+  openSIL/xUSL/Mpio/Common/MpioInitFlow.c
+  openSIL/xUSL/Mpio/Common/MpioInitLib.h
+  openSIL/xUSL/Mpio/Common/MpioLib.c
+  openSIL/xUSL/Mpio/Common/MpioLib.h
+  openSIL/xUSL/Mpio/Common/MpioLibLocal.h
+  openSIL/xUSL/Mpio/Common/MpioMappingResults.c
+  openSIL/xUSL/Mpio/Common/MpioParser.c
+  openSIL/xUSL/Mpio/Common/MpioPcie.c
+  openSIL/xUSL/Mpio/Common/MpioPcie.h
+  openSIL/xUSL/Mpio/Common/MpioPortVisibility.c
+  openSIL/xUSL/Mpio/Common/MpioStructs.h
+  openSIL/xUSL/Mpio/Common/MpioSupportFunctions.c
+  openSIL/xUSL/Mpio/Common/MpioTopology.c
+  openSIL/xUSL/Mpio/Common/MpioTrainingResults.c
+  openSIL/xUSL/Mpio/Common/Deli.h
+  openSIL/xUSL/Mpio/Brh/MpioBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioBrh.h
+  openSIL/xUSL/Mpio/Brh/MpioCfgPointsBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioCmn2Brh.c
+  openSIL/xUSL/Mpio/Brh/MpioCmn2Brh.h
+  openSIL/xUSL/Mpio/Brh/MpioIp2IpBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioIp2IpBrh.h
+  openSIL/xUSL/Mpio/Brh/MpioLibBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioPcieBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioPcieStrapsBrh.h
+  openSIL/xUSL/Mpio/Brh/MpioPortVisibilityBrh.c
+  openSIL/xUSL/Mpio/Brh/MpioTopologyBrh.c
+  openSIL/xUSL/Mpio/MpioClass-api.h
+  openSIL/xUSL/Mpio/MpioIp2Ip.h
+
+  # CXL Files
+  openSIL/xUSL/Cxl/Common/CxlInit.c
+  openSIL/xUSL/Cxl/Common/CxlInit.h
+  openSIL/xUSL/Cxl/Common/CxlClassDflts.c
+  openSIL/xUSL/Cxl/Common/CxlCmn2Rev.h
+  openSIL/xUSL/Cxl/Brh/CxlCmn2Brh.c
+  openSIL/xUSL/Cxl/Brh/CxlBrh.c
+  openSIL/xUSL/Cxl/Brh/CxlBrh.h
+  openSIL/xUSL/Cxl/Brh/CxlCmn2Brh.c
+  openSIL/xUSL/Cxl/Brh/CxlCmn2Brh.h
+  openSIL/xUSL/Cxl/Brh/CxlInitBrh.c
+  openSIL/xUSL/Cxl/Brh/CxlIp2IpBrh.c
+  openSIL/xUSL/Cxl/Brh/CxlIp2IpBrh.h
+  openSIL/xUSL/Cxl/Brh/CxlRegBrh.h
+  openSIL/xUSL/Cxl/CxlClass-api.h
+  openSIL/xUSL/Cxl/CxlIp2Ip.h
+
+  # APOB Files
+  openSIL/xUSL/APOB/ApobIp2Ip.h
+  openSIL/xUSL/APOB/Common/ApobCmn.h
+  openSIL/xUSL/APOB/Common/ApobCmn2Rev.h
+  openSIL/xUSL/APOB/Common/ApobCommon.c
+  openSIL/xUSL/APOB/BRH/Apob-BRH.h
+  openSIL/xUSL/APOB/BRH/ApobBrh.c
+  openSIL/xUSL/APOB/BRH/ApobBrh.h
+  openSIL/xUSL/APOB/BRH/ApobCmn2Brh.c
+  openSIL/xUSL/APOB/BRH/ApobCmn2Brh.h
+  openSIL/xUSL/APOB/BRH/ApobInitBrh.c
+  openSIL/xUSL/APOB/BRH/ApobInitBrh.h
+  openSIL/xUSL/APOB/BRH/ApobIp2IpBrh.c
+  openSIL/xUSL/APOB/BRH/ApobIp2IpBrh.h
+
+  # MEM Files
+  openSIL/xUSL/MEM/Common/Mem.c
+  openSIL/xUSL/MEM/Common/Mem.h
+  openSIL/xUSL/MEM/Common/MemCmn2Rev.h
+  openSIL/xUSL/MEM/Common/MemTableTypes.h
+  openSIL/xUSL/MEM/Common/MemSpd5.h
+  openSIL/xUSL/MEM/Brh/MemBrh.c
+  openSIL/xUSL/MEM/Brh/MemBrh.h
+  openSIL/xUSL/MEM/Brh/MemCmn2RevBrh.c
+  openSIL/xUSL/MEM/Brh/MemCmn2RevBrh.h
+  openSIL/xUSL/MEM/Brh/MemInitBrh.c
+  openSIL/xUSL/MEM/Brh/MemTableBrh.h
+  openSIL/xUSL/MEM/Brh/MemIp2IpBrh.c
+
+[Sources.Ia32]
+  openSIL/xUSL/CommonLib/IoOps32.nasm
+  openSIL/xUSL/CommonLib/CpuOps32.nasm
+  openSIL/xUSL/CommonLib/CpuLib32.nasm
+  openSIL/xUSL/CommonLib/PciExpressPciCfg32.nasm
+  openSIL/xUSL/CCX/Common/x32/ApAsm.nasm
+  openSIL/xUSL/CCX/Common/x32/ApStartup.nasm
+  openSIL/xUSL/CCX/Common/x32/ApStartupFixups.c
+
+[Sources.X64]
+  openSIL/xUSL/CommonLib/IoOps64.nasm
+  openSIL/xUSL/CommonLib/CpuOps64.nasm
+  openSIL/xUSL/CommonLib/CpuLib64.nasm
+  openSIL/xUSL/CommonLib/PciExpressPciCfg64.nasm
+  openSIL/xUSL/CCX/Common/x64/ApAsm.nasm
+  openSIL/xUSL/CCX/Common/x64/ApStartup.nasm
+  openSIL/xUSL/CCX/Common/x64/ApStartupFixups.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses]
+  SilEfiLib

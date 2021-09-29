@@ -1,0 +1,4 @@
+[submodule "openSIL"]
+	path = openSIL
+	url = https://github.com/openSIL/openSIL
+	branch = turin_poc

@@ -1,0 +1,8 @@
+#;******************************************************************************
+#;
+#; Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+# openSIL PEIM for Turin
+  INF AmdOpenSilPkg/opensil-uefi-interface/Platform/Turin/Pei/SilTurinPei.inf

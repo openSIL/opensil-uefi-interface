@@ -1,0 +1,54 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2018 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SilTurinDxe
+  FILE_GUID                      = 63a69022-0fd0-4b9f-bf6a-c44060ced7a7
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = SilDxeEntryPoint
+
+[Sources]
+  SilDataInit.c
+  CcxDataInit.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaFamily1AModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses.common.DXE_DRIVER]
+  UefiLib
+  SilDxeInit
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  libAMDxUSL
+  libAMDxSIM
+  libAMDxPRF
+  HobLib
+  BaseMemoryLib
+
+[Guids]
+
+[Pcd]
+
+[Ppis]
+
+[Protocols]
+  gEfiPciEnumerationCompleteProtocolGuid
+  gOpenSilxPrfProtocolGuid
+
+[Depex]
+  TRUE

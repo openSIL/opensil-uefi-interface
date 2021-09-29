@@ -1,0 +1,43 @@
+# Copyright (C) 2021 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+#
+# @file  SilSmm.inf
+# @brief SMM driver made for openSIL SI calls
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SilSmmInit
+  FILE_GUID                      = 4A644C55-36C8-4f2e-A8A7-FE0D9874F925
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SilSmm
+
+[Sources]
+  SilSmm.c
+  xPrfServicesSmm.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses.common.DXE_DRIVER]
+  UefiLib
+
+[LibraryClasses]
+  SmmServicesTableLib
+  libAMDxUSL
+  libAMDxSIM
+  libAMDxPRF
+  HobLib
+
+[Guids]
+  gPeiOpenSilDataHobGuid
+
+[Pcd]
+
+[Ppis]
+
+[Protocols]
+
+[Depex]
+  TRUE

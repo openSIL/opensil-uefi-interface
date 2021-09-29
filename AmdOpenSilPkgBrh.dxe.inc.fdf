@@ -1,0 +1,9 @@
+#;******************************************************************************
+#;
+#; Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+# openSIL DXE Driver(s) for Turin
+  INF AmdOpenSilPkg/opensil-uefi-interface/Platform/Turin/Dxe/SilTurinDxe.inf
+  INF AmdOpenSilPkg/opensil-uefi-interface/Platform/Turin/Smm/SilTurinSmm.inf
