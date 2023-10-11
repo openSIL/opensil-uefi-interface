@@ -1,0 +1,407 @@
+#
+# @file  SilPei.inf
+# @brief PEI module made for OpenSil SI calls
+#
+# Copyright 2021-2023 Advanced Micro Devices, Inc. All rights reserved.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SilOnyxPei
+  FILE_GUID                      = bd546d89-7852-4f88-9392-66481327a8ee
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = SilPeiEntryPoint
+
+[Sources]
+  SilDataInit.c
+  CcxDataInit.c
+  CxlDataInit.c
+  MpioDataInit.c
+  SdciDataInit.c
+  NbioDataInit.c
+  RasDataInit.c
+  FchDataInit.c
+  RcMgrDataInit.c
+
+#  uncomment when RC init call is made from openSIL FabricResourceInitLib RcMgrDataInit.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaFamily19ModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  PcdLib
+  PeiServicesLib
+  libAMDxUSL
+  libAMDxSIM
+  FabricResourceInitLib
+  SilPeiInit
+  AmdPspBaseLibV2
+  libAMDxPRF
+
+#  uncomment when RC init call is made from openSIL FabricResourceInitLib
+
+
+[Guids]
+  gPeiOpenSilCcxDownCoreDataGuid
+[Ppis]
+  gAmdNbioPcieComplexPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgHdAudioEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdOpnSpare
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgEarlyTrainTwoPcieLinks
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkTraining
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkSocket
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkLaneNum
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkDie
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieAerReportMechanism
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgSevSnpSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdApicMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDownCoreMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCcdMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmtMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd6
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd7
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdIbrsEn
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnvironmentFlag
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdBranchSampling
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSnpMemCover
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSnpMemSize
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdVmplEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd8
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd9
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd10
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCoreDisCcd11
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdGameMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL1StreamPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL1StridePrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL1RegionPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL2StreamPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL2UpDownPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCc6Ctrl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateIoBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpbMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdHardwarePrefetchMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSoftwarePrefetchMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmee
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdRedirectForReturnDis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdOpcacheCtrl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdStreamingStoresCtrl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnSpecStFill
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnableFSRM
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnableERMS
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnableRMSS
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnableSvmAVIC
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdIbsHardwareEn
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxEnableAvx512
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdEnableSvmX2AVIC
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMonMwaitDis
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr250
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr258
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr259
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr268
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr269
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26A
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26B
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26C
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26D
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26E
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26F
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdEdpcEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDxioFrequencyVetting
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdDisableWcSpecConfig
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgSmbus0BaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgSioPmeBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgAcpiPm1EvtBlkAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgAcpiPm1CntBlkAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgAcpiPmTmrBlkAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgCpuControlBlkAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgAcpiGpe0BlkAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgSmiCmdPortAddr
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdBootTimerEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdBootTimerResetType
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c0SdaHold
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c1SdaHold
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c2SdaHold
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c3SdaHold
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c4SdaHold
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchI2c5SdaHold
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSpreadSpectrum
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPwrFailShadow
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNoClearThermalTripSts
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdStressResetMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchAlinkRasSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchSpdHostCtrlRelease
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchDimmTelemetry
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdOemProgrammingTablePtr
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdToggleAllPwrGoodOnCf9
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLegacyFree
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdFchOscout1ClkContinous
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcClockDriveStrength
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcClockDriveStrengthRiseTime
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcClockDriveStrengthFallTime
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdFchWdtEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSerialIrqEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIoApicIdPreDefineEn
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgFchIoapicId
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdFchDisableAsfSecondary
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdHpetEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdHpetMsiDis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdTimerTickTrack
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdClockInterruptTag
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNoneSioKbcSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNativePcieSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCppcSciBitMap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmuFeatureControlDefines
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchRTDeviceEnableMap
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.FchUart0LegacyEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.FchUart1LegacyEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.FchUart2LegacyEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.FchUart3LegacyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmbusSsid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdXhci0Enable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdXhci1Enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhci0DevRemovable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDisableXhciPortLate
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb3PortDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb2PortDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb20OcPinSelect
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb31OcPinSelect
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciOcPolarityCfgLow
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciForceGen1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdUsbSparseModeEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdUsbGenoaOemConfigurationTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdALinkClkGateOff
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdBLinkClkGateOff
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAbClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSbgMemoryPowerSaving
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSbgClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXdmaDmaWrite16ByteMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXdmaMemoryPowerSaving
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXdmaPendingNprThreshold
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXdmaDncplOrderDis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSdphostBypassDataPack
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSdphostDisNpmwrProtect
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdResetCpuOnSyncFlood
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSyncFloodToApml
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataSetMaxGen2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataClkMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataEnable2
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataClass
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataAggrLinkPmCap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortMultCap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPscCap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataSscCap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataClkAutoOff
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataFisBasedSwitching
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataCccSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataDisableGenericMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataAhciEnclosureManagement
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataMsiEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataTargetSupport8Device
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataRasSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataAhciDisPrefetchFunction
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataAhciSsid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataRaidSsid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataRaid5Ssid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataAhciDisPrefetchFunction
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataDevSlpPort0
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataDevSlpPort1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataDevSlpPort0Num
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataDevSlpPort1Num
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataSgpio0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataControllerAutoShutdown
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSataMultiDiePortESP
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataMultiDiePortShutDown
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataIoDie0PortMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataSgpioMultiDieEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataBISTLComplianceMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataMultiDiePortRxPolarity
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdResetSpiSpeed
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdResetWriteSpeed
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdResetSpiTpmSpeed
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcClk0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcClk1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricCcxAsNumaDomain
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAgesaPstatePolicy
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSplitRmpTable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpuReserved
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpuPauseDelay
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDxioClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPcieDxioTimingControlEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkReceiverDetectionPolling
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkResetToTrainingTime
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkL0Polling
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIeExactMatchEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDxioPhyValid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDxioPhyProgramming
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDxioSaveRestoreModes
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAllowCompliance
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdHotPlugHandlingMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSrisEnableMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSrisSkipInterval
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSrisSkpIntervalSel
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSrisCfgType
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSrisAutoDetectMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSrisAutodetectFactor
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSrisLowerSkpOsGenSup
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSrisLowerSkpOsRcvSup
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCxlOnAllPorts
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlCorrectableErrorLogging
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlUnCorrectableErrorLogging
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAEREnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgMcCapEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgRcvErrEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkSocket
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEarlyBmcLinkLaneNum
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSurpriseDownFeature
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLcMultAutoSpdChgOnLastRateEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdRxMarginEnabled
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieCVTestWA
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNbioCTOtoSC
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNbioCTOIgnoreError
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgNbioSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPspccpSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgNtbccpSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgNbifF0Ssid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgNtbSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieSubsystemDeviceID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieSubsystemVendorID
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdGppAtomicOps
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdGfxAtomicOps
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioReportEdbErrors
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPreSilCtrl0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMPIOAncDataSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAfterResetDelay
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgEarlyLink
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCfgExposeUnusedPciePorts
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgForcePcieGenSpeed
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSataPhyTuning
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPcieLinkComplianceModeAllPorts
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMCTPEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSbrBrokenLaneAvoidanceSup
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAutoFullMarginSup
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPciePresetMask8GtAllPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPciePresetMask16GtAllPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPciePresetMask32GtAllPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPcieLinkAspmAllPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMCTPMasterSeg
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMCTPMasterID
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdReportErrorsToRcec
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlIoArbWeights
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlCaMemArbWeights
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCnliTokenAdvertisement
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCxlProtocolErrorReporting
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSyncHeaderByPass
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlTempGen5AdvertAltPtcl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlCamemRxOptimization
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCxlTxOptimizeDirectOutEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricSdci
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiS3Support
+# NBIO_CONFIG_DATA
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTDMAEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIOHCClkGatingSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNbifMgcgClkGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSstunlClkGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSyshubMgcgClkGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdTPHCompleterEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIoApicMMIOAddressReservedEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIoApicIdBase
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNbifMgcgHysteresis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSyshubMgcgHysteresis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitDbg
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitFastReg
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitFastRegCtl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIommuMMIOAddressReservedEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIommuAvicSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIommuL1ClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIommuL2ClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIOHCPgEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNbioGlobalCgOverride
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgACSEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPCIeLTREnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMaskDpcCapability
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPcieEcrcEnablement
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAutoSpeedChangeEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEsmEnableAllRootPorts
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEsmEnableAllRootPorts
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEsmTargetSpeed
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgRxMarginPersistenceMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgSriovEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAriEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAerEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAcsEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAtsEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPasidEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPwrEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgRtrEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPriEnDev0F1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAtcEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsEnRccDev0
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAerEnRccDev0
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsSourceValStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsTranslationalBlockingStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2pReqStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2pCompStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsUpstreamFwdStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2PEgressStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsDirectTranslatedStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsSsidEnStrap5
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDlfEnStrap1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPhy16gtStrap1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMarginEnStrap1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPriEnPageReq
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPriResetPageReq
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsSourceVal
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsTranslationalBlocking
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2pReq
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2pComp
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsUpstreamFwd
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcsP2PEgress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdRccDev0E2EPrefix
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdRccDev0ExtendedFmtSupported
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDlfCapEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDlfExEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieSpeedControl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPrecodeRequestEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAdvertiseEqToHighRateSupport
+
+[Ppis]
+ gOpenSilxPrfServicePpiGuid #PRODUCED
+
+[Protocols]
+
+[Depex]
+  gAmdFabricGenoaDepexPpiGuid AND
+  gApobCommonServicePpiGuid AND
+  gAmdNbioPcieComplexPpiGuid

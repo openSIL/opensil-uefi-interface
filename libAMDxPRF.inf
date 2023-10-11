@@ -1,0 +1,52 @@
+#
+# @file  libAMDxPRF.inf
+# @brief SIL xPRF UEFI module
+#
+# Copyright 2021-2023 Advanced Micro Devices, Inc. All rights reserved.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = libAMDxPRF
+  FILE_GUID                      = 6a7e2a91-e41c-49ec-92b5-f34fb918cf8d
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = libAMDxPRF
+
+[BuildOptions]
+# Set the compiler to include the platform openSIL config file
+   MSFT:*_*_*_CC_FLAGS     =  /FIOpenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+   GCC:*_*_*_CC_FLAGS      =  -includeOpenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
+
+[Sources]
+  OpenSil/Include/xPRF-api.h
+  OpenSil/xPRF/xPRF.c
+  OpenSil/xPRF/xPRF.h
+  OpenSil/xPRF/RAS/xPrfRas.c
+  OpenSil/xPRF/RAS/xPrfRasServices.c
+  OpenSil/xPRF/Mem/xPrfMem.c
+  OpenSil/xPRF/Mem/xPrfMem.h
+  OpenSil/xPRF/Mem/xPrfMemSpd5.h
+  OpenSil/xPRF/CCX/xPrfCcx.c
+  OpenSil/xPRF/CCX/xPrfCcx.h
+  OpenSil/xPRF/NBIO/xPrfNbio.c
+  OpenSil/xPRF/NBIO/xPrfNbio.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdOpenSilPkg/opensil-uefi-interface/AmdOpenSilPkg.dec
+
+[LibraryClasses]
+  SilEfiLib
+  libAMDxSIM
+  libAMDxUSL
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
