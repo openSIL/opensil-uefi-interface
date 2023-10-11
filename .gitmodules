@@ -1,0 +1,3 @@
+[submodule "OpenSIL"]
+	path = OpenSIL
+	url = https://github.com/openSIL/openSIL
