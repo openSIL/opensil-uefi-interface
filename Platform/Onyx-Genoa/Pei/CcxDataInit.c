@@ -96,7 +96,7 @@ SetCcxData (
   CcxData->CcxInputBlock.DisableWcSpecConfig            = PcdGet8(PcdAmdDisableWcSpecConfig);
   CcxData->CcxInputBlock.AmdPstatePolicy                = PcdGet8(PcdAmdAgesaPstatePolicy);
   CcxData->CcxInputBlock.AmdSplitRmpTable               = PcdGet8(PcdAmdSplitRmpTable);
-  CcxData->CcxInputBlock.AmdReserved                    = PcdGet8(PcdAmdReserved);
+  CcxData->CcxInputBlock.AmdReserved                    = 0xFF;
   CcxData->CcxInputBlock.AmdCpuPauseDelay               = PcdGet8(PcdAmdCpuPauseDelay);
 
   DEBUG ((DEBUG_INFO, "SIL Processor ID : 0x%x \n", CcxData->CcxOutputBlock.ProcessorId));

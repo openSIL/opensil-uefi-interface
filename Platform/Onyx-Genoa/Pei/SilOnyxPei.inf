@@ -251,7 +251,6 @@
   gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricCcxAsNumaDomain
   gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAgesaPstatePolicy
   gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSplitRmpTable
-  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpuReserved
   gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpuPauseDelay
   gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDxioClockGating
   gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPcieDxioTimingControlEnable
