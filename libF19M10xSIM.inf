@@ -19,13 +19,13 @@
    GCC:*_*_*_CC_FLAGS      =  -includeOpenSil/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
 
 [Sources]
-  OpenSil/Include/xSIM-api.h
-  OpenSil/xSIM/xSIM.c
-  OpenSil/xSIM/xSIM.h
-  OpenSil/xSIM/SoC/F19M10/IpBlkListF19M10Tp1.c
-  OpenSil/xSIM/SoC/F19M10/IpBlkListF19M10Tp2.c
-  OpenSil/xSIM/SoC/F19M10/IpBlkListF19M10Tp3.c
-  OpenSil/xSIM/IpHandler.h
+  OpenSIL/Include/xSIM-api.h
+  OpenSIL/xSIM/xSIM.c
+  OpenSIL/xSIM/xSIM.h
+  OpenSIL/xSIM/SoC/F19M10/IpBlkListF19M10Tp1.c
+  OpenSIL/xSIM/SoC/F19M10/IpBlkListF19M10Tp2.c
+  OpenSIL/xSIM/SoC/F19M10/IpBlkListF19M10Tp3.c
+  OpenSIL/xSIM/IpHandler.h
 
 
 [Sources.IA32]

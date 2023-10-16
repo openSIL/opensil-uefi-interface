@@ -19,18 +19,18 @@
    GCC:*_*_*_CC_FLAGS      =  -includeOpenSIL/configs/$(SIL_PLATFORM_NAME)_SilCfg.h
 
 [Sources]
-  OpenSil/Include/xPRF-api.h
-  OpenSil/xPRF/xPRF.c
-  OpenSil/xPRF/xPRF.h
-  OpenSil/xPRF/RAS/xPrfRas.c
-  OpenSil/xPRF/RAS/xPrfRasServices.c
-  OpenSil/xPRF/Mem/xPrfMem.c
-  OpenSil/xPRF/Mem/xPrfMem.h
-  OpenSil/xPRF/Mem/xPrfMemSpd5.h
-  OpenSil/xPRF/CCX/xPrfCcx.c
-  OpenSil/xPRF/CCX/xPrfCcx.h
-  OpenSil/xPRF/NBIO/xPrfNbio.c
-  OpenSil/xPRF/NBIO/xPrfNbio.h
+  OpenSIL/Include/xPRF-api.h
+  OpenSIL/xPRF/xPRF.c
+  OpenSIL/xPRF/xPRF.h
+  OpenSIL/xPRF/RAS/xPrfRas.c
+  OpenSIL/xPRF/RAS/xPrfRasServices.c
+  OpenSIL/xPRF/Mem/xPrfMem.c
+  OpenSIL/xPRF/Mem/xPrfMem.h
+  OpenSIL/xPRF/Mem/xPrfMemSpd5.h
+  OpenSIL/xPRF/CCX/xPrfCcx.c
+  OpenSIL/xPRF/CCX/xPrfCcx.h
+  OpenSIL/xPRF/NBIO/xPrfNbio.c
+  OpenSIL/xPRF/NBIO/xPrfNbio.h
 
 [Packages]
   MdePkg/MdePkg.dec

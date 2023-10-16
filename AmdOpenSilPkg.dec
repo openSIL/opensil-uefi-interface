@@ -5,15 +5,15 @@
   PACKAGE_VERSION       = 0.1
 
 [Includes]
-  OpenSil/Include
-  OpenSil/xSIM
-  OpenSil/xPRF
-  OpenSil/xUSL
-  OpenSil/xUSL/Include
-  OpenSil/xUSL/CommonLib
-  OpenSil/xUSL/CCX
-  OpenSil/xUSL/CCX/Common
-  OpenSil/xPRF/
+  OpenSIL/Include
+  OpenSIL/xSIM
+  OpenSIL/xPRF
+  OpenSIL/xUSL
+  OpenSIL/xUSL/Include
+  OpenSIL/xUSL/CommonLib
+  OpenSIL/xUSL/CCX
+  OpenSIL/xUSL/CCX/Common
+  OpenSIL/xPRF/
   SilToUefi
   Platform
 
